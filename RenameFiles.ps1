@@ -6,11 +6,38 @@ function Get-UserInput($prompt, $default) {
     return $input
 }
 
+function Get-SourceInput {
+    $sourceOptions = @{
+        "1" = "AMZN"
+        "2" = "DSNP"
+        "3" = "HULU"
+    }
+    
+    Write-Host "Select the source:"
+    Write-Host "1. Amazon (AMZN)"
+    Write-Host "2. Disney+ (DSNP)"
+    Write-Host "3. Hulu (HULU)"
+    Write-Host "4. Other (custom input)"
+    
+    $choice = Read-Host "Enter your choice (1-4)"
+    
+    if ($choice -eq "4") {
+        return Read-Host "Enter custom source"
+    }
+    elseif ($sourceOptions.ContainsKey($choice)) {
+        return $sourceOptions[$choice]
+    }
+    else {
+        Write-Warning "Invalid choice. Defaulting to AMZN."
+        return "AMZN"
+    }
+}
+
 $inputFolder = Read-Host "Enter the input folder path"
 $tvSeries = Get-UserInput "Enter TV series name" "My Show"
 $resolution = Get-UserInput "Enter resolution" "1080p"
 $type = Get-UserInput "Enter type" "WEB-DL"
-$source = Get-UserInput "Enter source (e.g., Amazon, abbreviate as AMZN)" "AMZN"
+$source = Get-SourceInput
 $audio = Get-UserInput "Enter audio format (e.g., DDP 2.0)" "DDP 2.0"
 
 if (-not (Test-Path $inputFolder)) {
