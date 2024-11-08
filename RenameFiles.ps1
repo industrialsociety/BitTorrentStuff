@@ -41,7 +41,7 @@ Get-ChildItem $inputFolder -File | ForEach-Object {
         Write-Host "Renamed: $oldName -> $newName"
     }
     else {
-        Write-Warning "Skipped $oldName: Could not extract season and episode information."
+        Write-Warning ("Skipped {0}: Could not extract season and episode information." -f $oldName)
     }
 }
 
