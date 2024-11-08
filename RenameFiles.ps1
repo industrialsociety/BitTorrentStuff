@@ -52,7 +52,7 @@ Get-ChildItem $inputFolder -File | ForEach-Object {
         $season = $matches[1]
         $episode = $matches[2]
         
-        $newName = "{0}.S{1}E{2}.{3}.{4}.{5}.{6}-NAME{7}" -f `
+        $newName = "{0}.S{1}E{2}.{3}.{4}.{5}.{6}.H.264-NAME{7}" -f `
             ($tvSeries -replace "\s+", "."), `
             $season, `
             $episode, `
